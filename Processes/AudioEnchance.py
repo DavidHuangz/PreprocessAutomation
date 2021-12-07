@@ -8,8 +8,12 @@ from Constants import *
 def enhance_audio(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/AudioEnhance'
 
-    # Output file directory
-    prefs = {"download.default_directory": AudioEnhanceOutput}
+    # Output file directorys
+    prefs = {"download.default_directory": AudioEnhanceOutput,
+             "download.prompt_for_download": False,
+             "download.directory_upgrade": True,
+             "safebrowsing.enabled": True
+             }
     options.add_experimental_option("prefs", prefs)
 
     driver = webdriver.Chrome(service=s, options=options)
@@ -53,7 +57,7 @@ def enhance_audio(dataChunks):
     print('processing files...')
     while True:
         if not downloading(driver):
-            time.sleep(2)
+            time.sleep(2)  # Extra delay for downloading
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Download zips')
             break

@@ -52,7 +52,7 @@ def WebMAUS_process(dataChunks):
             break
 
     # Wait till processing
-    print('pocessing files...')
+    print('processing files...')
     while True:
         if not downloading(driver):
             # click download zips

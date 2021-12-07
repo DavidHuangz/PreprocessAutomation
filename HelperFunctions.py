@@ -167,7 +167,7 @@ def dataChunkProcess(directory1, directory2):
         if directory2 != '':
             globals()['fileY{0}'.format(i)] = ""  # dynamic variables for upload 2
 
-    print('\nSeparating files into chunks for each thread(s)\n')
+    print('\n----------Separating files into chunks for each thread(s)----------\n')
     for subdir, dirs, files in os.walk(directory1):
         for file in files:
             # assign dynamic variables to string
@@ -190,14 +190,13 @@ def dataChunkProcess(directory1, directory2):
                 counterThread += 1
                 if counterThread >= num_threads:
                     counterThread = 0
-
+    print('----------Upload 1----------\n')
     for i in range(num_threads):
-        print('Upload 1\n')
         globals()['fileX{0}'.format(i)] = globals()['fileX{0}'.format(i)][1:] # get rid of new line at end of string
         print('thread{}: '.format(i) + '\n' + eval('fileX{0}'.format(i)) + '\n')
     # If there's directory2 for second upload
     if directory2 != '':
+        print('----------Upload 2----------\n')
         for i in range(num_threads):
-            print('Upload 2\n')
             globals()['fileY{0}'.format(i)] = globals()['fileY{0}'.format(i)][1:] # get rid of new line at end of string
             print('thread{}: '.format(i) + '\n' + eval('fileY{0}'.format(i)) + '\n')

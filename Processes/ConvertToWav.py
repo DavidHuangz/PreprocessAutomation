@@ -19,7 +19,7 @@ def convertToWav():
         # Previously needed to change directories, merged this together with the personal pepeha script, no longer
         # needs it
         audio_files = glob(AudioFiles + '/*')
-        shuffle(audio_files)  # shuffle files for greatar efficiency for multithreading
+        shuffle(audio_files)  # shuffle files for greater efficiency for multithreading
         # Goes through the dataset to check for recordings that are either mp4 or m4a
         for file in audio_files:
             for extension in extension_list:

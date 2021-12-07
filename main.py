@@ -1,9 +1,3 @@
-# install in terminal
-# pip install selenium
-# pip install chromedriver-py
-# pip install webdriver-manager
-# pip install pydub
-
 import concurrent.futures
 import os.path
 
@@ -46,7 +40,7 @@ def main():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(G2P_process, dataChunks)  # step 6 - processing enhance audio to .par files
 
-    dataChunkProcess(AudioEnhanceOutput, G2POutputFiles)  # step 7 - Two separate chunks for two uploads for WebMaus
+    dataChunkProcess(AudioEnhanceOutput, G2POutputFiles)  # step 7 - Two separate chunks for two uploads for WebMAUS
     # Enhance WebMAUS process for generating text grids
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(WebMAUS_process, dataChunks)  # step 8 - processing text grids from .par and enhanced audio files
