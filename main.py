@@ -8,10 +8,10 @@ import concurrent.futures
 import os.path
 
 # Other files
-from AudioEnchance import enhance_audio
-from ConvertToWav import threadingConvertToWav
-from WebMAUS import WebMAUS_process
-from G2P import *
+from Processes.AudioEnchance import enhance_audio
+from Processes.ConvertToWav import threadingConvertToWav
+from Processes.WebMAUS import WebMAUS_process
+from Processes.G2P import *
 from HelperFunctions import *
 
 
