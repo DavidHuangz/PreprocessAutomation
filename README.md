@@ -35,8 +35,10 @@ G2POutputFiles = r'D:\Output\genFiles\G2P_output' <br />
 WebMAUSOutputFile = r'D:\Output\WebMAUS_output' <br />
 
 ## 3. Add Input files
-3.1. Inside the "Input", add your all your raw audio files inside "Audio" folder (e.g "Input\Audio\audio1") <br />
-3.2. Inside the "Input", add your "TRMg2p" file inside "ImapText" folder (e.g Input\ImapText\TRMg2p.txt) <br />
+3.1. Inside the "Input",  <br />
+add your all your raw audio files inside "Audio" folder (e.g "Input\Audio\audio1") <br /> <br />
+3.2. Inside the "Input",  <br />
+add your "TRMg2p" file inside "ImapText" folder (e.g Input\ImapText\TRMg2p.txt) <br />
 
 ## 4. Run code
 4.1. Run main.py file <br />
