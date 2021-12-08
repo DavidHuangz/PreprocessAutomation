@@ -10,7 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
 # Configurable settings #
-NoBrowser = True
+NoBrowser = False
 Num_threads = 10
 ThreadsNum = Num_threads
 

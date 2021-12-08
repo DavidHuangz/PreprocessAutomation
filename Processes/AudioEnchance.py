@@ -8,7 +8,7 @@ from Constants import *
 def enhance_audio(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/AudioEnhance'
 
-    # Output file directorys
+    # Output file directory's
     prefs = {"download.default_directory": AudioEnhanceOutput,
              "download.prompt_for_download": False,
              "download.directory_upgrade": True,
