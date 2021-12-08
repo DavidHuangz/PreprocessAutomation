@@ -52,4 +52,5 @@ def main():
     print('Processed ' + str(len(processedFiles)) + ' files')
 
 
-main()
+if __name__ == '__main__':
+    main()

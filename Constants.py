@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 
 # Configurable settings #
 NoBrowser = True
-Num_threads = 10
+Num_threads = 100
 ThreadsNum = Num_threads
 
 # Pepeha phrases
