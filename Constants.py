@@ -8,9 +8,10 @@ import os
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+# from Processes.ConvertToWav import threadingConvertToWav
 
 # Configurable settings #
-NoBrowser = False
+NoBrowser = True
 Num_threads = 10
 ThreadsNum = Num_threads
 
@@ -35,9 +36,5 @@ options.add_argument("--disable-notifications")
 options.add_argument('--window-size=1280,720')
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--disable-software-rasterizer')
 s = Service(ChromeDriverManager().install())
-
-# If Num_threads > audio files, adjust the threads
-xAudioNum = len(os.listdir(AudioFiles))
-if Num_threads > xAudioNum:
-    Num_threads = xAudioNum

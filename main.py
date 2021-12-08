@@ -3,14 +3,19 @@ import os.path
 
 # Other files
 from Processes.AudioEnchance import enhance_audio
-from Processes.ConvertToWav import threadingConvertToWav
 from Processes.WebMAUS import WebMAUS_process
 from Processes.G2P import *
+from Processes.ConvertToWav import threadingConvertToWav
 from HelperFunctions import *
+from Constants import Num_threads
 
 
 def main():
     t1 = time.perf_counter()
+
+    threadingConvertToWav()  # step 1 - Convert all audio files to wav type
+    # If Num_threads > audio files, adjust threads equal to audio files
+    modifyConstant(Num_threads, AudioFiles)
 
     # Concurrent datachunks processing for each thread
     dataChunks = []
@@ -25,8 +30,6 @@ def main():
     emptyFolder(G2POutputFiles)
     time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(WebMAUSOutputFile)
-
-    threadingConvertToWav()  # step 1 - Convert all audio files to wav type
 
     makeTextFile()  # step 2 - Make all text files for G2P - .Par files
 

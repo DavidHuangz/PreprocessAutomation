@@ -70,7 +70,7 @@ def G2P_process(dataChunks):
             # Wait for other threads to finish downloading to prevent duplicate zip files
             waitForThreadsDownload(dataChunks, G2POutputFiles)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
-            print('Download zips')
+            print('Click download zips')
             break
 
     # Wait for download

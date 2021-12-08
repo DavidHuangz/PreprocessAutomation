@@ -141,15 +141,17 @@ def isDownloadComplete(directory):
 
 
 def waitForThreadsDownload(dataChunks, directory):
+    print('Waiting for thread ' + str(dataChunks - 1) + ' to finish downloading...')
     num_files = 0
     checkFiles = 0
-    print('Waiting for thread ' + str(abs(dataChunks - 1)) + ' to finish downloading...')
+
     while checkFiles < dataChunks:
         for file in os.listdir(directory):
             if file.endswith(".zip"):
                 num_files += 1
         checkFiles = num_files
         num_files = 0
+
     print('Downloading file for thread ' + str(dataChunks))
 
 
@@ -211,3 +213,13 @@ def dataChunkProcess(directory1, directory2):
             globals()['fileY{0}'.format(i)] = globals()['fileY{0}'.format(i)][
                                               1:]  # get rid of new line at end of string
             print('thread{}: '.format(i) + '\n' + eval('fileY{0}'.format(i)) + '\n')
+
+
+def modifyConstant(thread, directory):
+    AudioNum = len(os.listdir(directory))
+    if thread > AudioNum:
+        global Num_threads
+        global ThreadsNum
+        Num_threads = AudioNum
+        ThreadsNum = AudioNum
+        print('Changed number of thread(s) to ' + str(Num_threads))

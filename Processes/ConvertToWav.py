@@ -1,14 +1,15 @@
+import os
 import concurrent.futures
 from random import shuffle
 from glob import glob
 from pydub import AudioSegment
 import time
-from Constants import *
+from Constants import ThreadsNum, AudioFiles
 
 
 def convertToWav():
-    rawAudioFiles = os.listdir(AudioFiles)
-    print('Starting with: ' + str(len(rawAudioFiles)) + ' files')
+    rawAudioFiles = len(os.listdir(AudioFiles))
+    print('Starting with: ' + str(rawAudioFiles) + ' files')
 
     # Change working directory
     os.chdir(AudioFiles)
@@ -47,7 +48,7 @@ def threadingConvertToWav():
     # get number of files
     listX = os.listdir(AudioFiles)
     listOfFiles = len(listX)
-    print('Conversion completed!\n' + 'files converted: ' + str(listOfFiles))
+    print('Conversion completed!\n' + 'Total files converted: ' + str(listOfFiles))
     print(
         f'Finished in {round(finishAudioConversion - startAudioConversion, 2)} second(s)' + ' with ' + str(
             ThreadsNum) + ' threads')

@@ -47,6 +47,7 @@ def WebMAUS_process(dataChunks):
         if not downloading(driver):
             time.sleep(2)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[1]/div[2]/div', driver)
+            time.sleep(2)  # Extra delay for downloading
             print('Run service complete!')
             break
 
@@ -58,7 +59,7 @@ def WebMAUS_process(dataChunks):
             # Wait for other threads to finish downloading to prevent duplicate zip files
             waitForThreadsDownload(dataChunks, WebMAUSOutputFile)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
-            print('Download zips')
+            print('Click download zips')
             break
 
     # Wait for download
