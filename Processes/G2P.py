@@ -57,7 +57,6 @@ def G2P_process(dataChunks):
     print('Run services...')
     while True:
         if not downloading(driver):
-            # click run services
             time.sleep(2)  # Extra delay for downloading
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[1]/div[2]/div', driver)
             print('Run service')
@@ -67,8 +66,9 @@ def G2P_process(dataChunks):
     print('processing files...')
     while True:
         if not downloading(driver):
-            # click download zips
-            time.sleep(2)
+            time.sleep(2)  # Extra delay for downloading
+            # Wait for other threads to finish downloading to prevent duplicate zip files
+            waitForThreadsDownload(dataChunks, G2POutputFiles)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Download zips')
             break
@@ -81,4 +81,4 @@ def G2P_process(dataChunks):
 
     # Close G2P
     driver.close()
-    print('G2P closed')
+    print('G2P closed for thread ' + str(dataChunks))

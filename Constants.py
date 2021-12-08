@@ -8,11 +8,9 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
-from selenium import webdriver
-
 # Configurable settings #
-NoBrowser = False
-num_threads = 1
+NoBrowser = True
+num_threads = 10
 ThreadsNum = num_threads
 
 # Pepeha phrases
@@ -27,13 +25,13 @@ ImapText = r'D:\pepaha\Input\ImapText\TRMg2p.txt'
 G2POutputFiles = r'D:\pepaha\Output\genFiles\G2P_output'
 WebMAUSOutputFile = r'D:\pepaha\Output\WebMAUS_output'
 
-# # Setting up browser
-# options = Options()
-# options.headless = NoBrowser
-# options.add_argument('--disable-gpu')
-# options.add_argument('--lang=en')
-# options.add_argument("--disable-notifications")
-# options.add_argument('--window-size=1280,720')
-# options.add_argument('--no-sandbox')
-# options.add_argument('--disable-dev-shm-usage')
-# s = Service(ChromeDriverManager().install())
+# Setting up browser
+options = Options()
+options.headless = NoBrowser
+options.add_argument('--disable-gpu')
+options.add_argument('--lang=en')
+options.add_argument("--disable-notifications")
+options.add_argument('--window-size=1280,720')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+s = Service(ChromeDriverManager().install())

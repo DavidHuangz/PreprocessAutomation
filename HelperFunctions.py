@@ -76,7 +76,6 @@ def checkPageLoad(driver):
 
 def clickElement(XPATH_element, driver):
     buttonToClick = driver.find_element(By.XPATH, XPATH_element)
-    # Check if button is clickable
     buttonToClick.click()
 
 
@@ -143,6 +142,19 @@ def isDownloadComplete(directory):
     print('file fully downloaded')
 
 
+def waitForThreadsDownload(dataChunks, directory):
+    num_files = 0
+    checkFiles = 0
+    print('Waiting for thread ' + str(abs(dataChunks - 1)) + ' to finish downloading...')
+    while checkFiles < dataChunks:
+        for file in os.listdir(directory):
+            if file.endswith(".zip"):
+                num_files += 1
+        checkFiles = num_files
+        num_files = 0
+    print('Downloading file for thread ' + str(dataChunks))
+
+
 # uploading multiple files concurrently
 def uploadToFile(XPATH_element, dataChunks, FileNum, driver):
     if FileNum == 1:
@@ -192,11 +204,12 @@ def dataChunkProcess(directory1, directory2):
                     counterThread = 0
     print('----------Upload 1----------\n')
     for i in range(num_threads):
-        globals()['fileX{0}'.format(i)] = globals()['fileX{0}'.format(i)][1:] # get rid of new line at end of string
+        globals()['fileX{0}'.format(i)] = globals()['fileX{0}'.format(i)][1:]  # get rid of new line at end of string
         print('thread{}: '.format(i) + '\n' + eval('fileX{0}'.format(i)) + '\n')
     # If there's directory2 for second upload
     if directory2 != '':
         print('----------Upload 2----------\n')
         for i in range(num_threads):
-            globals()['fileY{0}'.format(i)] = globals()['fileY{0}'.format(i)][1:] # get rid of new line at end of string
+            globals()['fileY{0}'.format(i)] = globals()['fileY{0}'.format(i)][
+                                              1:]  # get rid of new line at end of string
             print('thread{}: '.format(i) + '\n' + eval('fileY{0}'.format(i)) + '\n')

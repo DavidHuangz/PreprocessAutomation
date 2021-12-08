@@ -58,6 +58,8 @@ def enhance_audio(dataChunks):
     while True:
         if not downloading(driver):
             time.sleep(2)  # Extra delay for downloading
+            # Wait for other threads to finish downloading to prevent duplicate zip files
+            waitForThreadsDownload(dataChunks, AudioEnhanceOutput)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Download zips')
             break
@@ -70,4 +72,4 @@ def enhance_audio(dataChunks):
 
     # Close AudioEnhance
     driver.close()
-    print('AudioEnhance closed')
+    print('AudioEnhance closed for thread ' + str(dataChunks))

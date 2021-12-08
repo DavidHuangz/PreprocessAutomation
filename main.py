@@ -19,11 +19,11 @@ def main():
 
     # Empty all relevant folders used for processing
     emptyFolder(AudioEnhanceOutput)
-    time.sleep(1)  # Extra delay for deleting
+    time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(textFile)
-    time.sleep(1)  # Extra delay for deleting
+    time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(G2POutputFiles)
-    time.sleep(1)  # Extra delay for deleting
+    time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(WebMAUSOutputFile)
 
     threadingConvertToWav()  # step 1 - Convert all audio files to wav type
