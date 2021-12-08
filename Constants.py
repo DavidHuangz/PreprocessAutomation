@@ -10,11 +10,11 @@ from selenium.webdriver.chrome.options import Options
 
 # Configurable settings #
 NoBrowser = True
-num_threads = 10
-ThreadsNum = num_threads
+Num_threads = 10
+ThreadsNum = Num_threads
 
 # Pepeha phrases
-pepehaPhrase = 'Ko Maungawhau Ko Maungakiekie ngā maunga\nKo Waitematā Ko Manuka ngā whanga\nKo Tūtahi Tonu te ' \
+PepehaPhrase = 'Ko Maungawhau Ko Maungakiekie ngā maunga\nKo Waitematā Ko Manuka ngā whanga\nKo Tūtahi Tonu te ' \
                    'Whare\nKo Te Aka Matua o Te Pou Hawaiki te Marae\nKo Niwaru te waka\nKo Tuputupu Whenua te tangata'
 
 # File locations

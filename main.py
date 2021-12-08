@@ -14,7 +14,7 @@ def main():
 
     # Concurrent datachunks processing for each thread
     dataChunks = []
-    for x in range(num_threads):
+    for x in range(Num_threads):
         dataChunks.append(x)
 
     # Empty all relevant folders used for processing
@@ -47,7 +47,7 @@ def main():
 
     t2 = time.perf_counter()
 
-    print(f'Finished in {round(t2 - t1, 2)} second(s)' + ' with ' + str(num_threads) + ' thread(s)')
+    print(f'Finished in {round(t2 - t1, 2)} second(s)' + ' with ' + str(Num_threads) + ' thread(s)')
     processedFiles = os.listdir(WebMAUSOutputFile)
     print('Processed ' + str(len(processedFiles)) + ' files')
 

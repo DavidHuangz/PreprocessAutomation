@@ -36,8 +36,6 @@ def emptyFolder(folder):
 def makeTextFile():
     file_in = AudioFiles
     file_out = TextFile
-    pepehaPhrase = 'Ko Maungawhau Ko Maungakiekie ngā maunga\nKo Waitematā Ko Manuka ngā whanga\nKo Tūtahi Tonu te ' \
-                   'Whare\nKo Te Aka Matua o Te Pou Hawaiki te Marae\nKo Niwaru te waka\nKo Tuputupu Whenua te tangata '
 
     os.chdir(file_in)
 
@@ -49,7 +47,7 @@ def makeTextFile():
         wav_filename = os.path.splitext(os.path.basename(file))[0]
         output = "{0}.audioenhance.txt".format(wav_filename)
         audioEnhance = open(output, "a", encoding="utf-8", errors='ignore')
-        audioEnhance.write(pepehaPhrase)
+        audioEnhance.write(PepehaPhrase)
         print('Generated text file for ' + wav_filename)
         audioEnhance.close()
         shutil.move(os.path.join(file_in, output), os.path.join(file_out, output))
@@ -133,7 +131,7 @@ def isDownloadComplete(directory):
     num_files = 0
     checkFiles = 0
     print('File downloading...')
-    while checkFiles < num_threads:
+    while checkFiles < Num_threads:
         for file in os.listdir(directory):
             if file.endswith(".zip"):
                 num_files += 1
@@ -174,7 +172,7 @@ def dataChunkProcess(directory1, directory2):
     counterThread = 0
 
     # Create dynamic variables
-    for i in range(num_threads):
+    for i in range(Num_threads):
         globals()['fileX{0}'.format(i)] = ""  # dynamic variables for upload 1
         if directory2 != '':
             globals()['fileY{0}'.format(i)] = ""  # dynamic variables for upload 2
@@ -186,7 +184,7 @@ def dataChunkProcess(directory1, directory2):
             globals()['fileX{0}'.format(counterThread)] += '\n' + os.path.join(subdir, file)
 
             counterThread += 1
-            if counterThread >= num_threads:
+            if counterThread >= Num_threads:
                 counterThread = 0
 
     # Reset counter
@@ -200,16 +198,16 @@ def dataChunkProcess(directory1, directory2):
                 globals()['fileY{0}'.format(counterThread)] += '\n' + os.path.join(subdir, file)
 
                 counterThread += 1
-                if counterThread >= num_threads:
+                if counterThread >= Num_threads:
                     counterThread = 0
     print('----------Upload 1----------\n')
-    for i in range(num_threads):
+    for i in range(Num_threads):
         globals()['fileX{0}'.format(i)] = globals()['fileX{0}'.format(i)][1:]  # get rid of new line at end of string
         print('thread{}: '.format(i) + '\n' + eval('fileX{0}'.format(i)) + '\n')
     # If there's directory2 for second upload
     if directory2 != '':
         print('----------Upload 2----------\n')
-        for i in range(num_threads):
+        for i in range(Num_threads):
             globals()['fileY{0}'.format(i)] = globals()['fileY{0}'.format(i)][
                                               1:]  # get rid of new line at end of string
             print('thread{}: '.format(i) + '\n' + eval('fileY{0}'.format(i)) + '\n')
