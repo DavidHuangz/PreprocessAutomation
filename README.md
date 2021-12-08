@@ -1,4 +1,4 @@
-# PreprocessAutomation
+# Preprocessing raw audio files to text grid automation
 
 ## Requirements:
 ## Libraries to install in terminal
