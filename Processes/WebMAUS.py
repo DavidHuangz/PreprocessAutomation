@@ -3,15 +3,22 @@ import time
 # Other files
 from HelperFunctions import *
 from Constants import *
+from selenium import webdriver
 
 
 def WebMAUS_process(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/WebMAUSGeneral'
 
-    prefs = {"download.default_directory": WebMAUSOutputFile}
-    options.add_experimental_option("prefs", prefs)
+    # prefs = {"download.default_directory": WebMAUSOutputFile,
+    #          "download.prompt_for_download": False,
+    #          "download.directory_upgrade": True,
+    #          "safebrowsing_for_trusted_sources_enabled": False,
+    #          "safebrowsing.enabled": False
+    #          }
+    # options.add_experimental_option("prefs", prefs)
 
-    driver = webdriver.Chrome(service=s, options=options)
+    options.set_preference("browser.download.dir", WebMAUSOutputFile)
+    driver = webdriver.Firefox(executable_path=r'D:\pepaha\geckodriver.exe', options=options, service_log_path=os.devnull)
     driver.get(URL)
 
     print('Starting WebMAUS General automation')
@@ -55,8 +62,9 @@ def WebMAUS_process(dataChunks):
     print('processing files...')
     while True:
         if not downloading(driver):
-            # click download zips
-            time.sleep(2)
+            time.sleep(2)  # Extra delay for downloading
+            # Wait for other threads to finish downloading to prevent duplicate zip files
+            waitForThreadsDownload(dataChunks, WebMAUSOutputFile)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Download zips')
             break
@@ -69,4 +77,4 @@ def WebMAUS_process(dataChunks):
 
     # close WebMAUS
     driver.close()
-    print('WebMAUS closed')
+    print('WebMAUS closed for thread ' + str(dataChunks))

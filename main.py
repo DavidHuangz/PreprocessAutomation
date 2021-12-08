@@ -19,11 +19,11 @@ def main():
 
     # Empty all relevant folders used for processing
     emptyFolder(AudioEnhanceOutput)
-    time.sleep(1)  # Extra delay for deleting
+    time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(textFile)
-    time.sleep(1)  # Extra delay for deleting
+    time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(G2POutputFiles)
-    time.sleep(1)  # Extra delay for deleting
+    time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(WebMAUSOutputFile)
 
     threadingConvertToWav()  # step 1 - Convert all audio files to wav type
@@ -35,15 +35,15 @@ def main():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(enhance_audio, dataChunks)  # step 4 - processing raw audio to enhance audio
 
-    dataChunkProcess(textFile, '')  # step 5 - Separate text files into chunks for each thread
-    # Enhance G2P process
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(G2P_process, dataChunks)  # step 6 - processing enhance audio to .par files
-
-    dataChunkProcess(AudioEnhanceOutput, G2POutputFiles)  # step 7 - Two separate chunks for two uploads for WebMAUS
-    # Enhance WebMAUS process for generating text grids
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(WebMAUS_process, dataChunks)  # step 8 - processing text grids from .par and enhanced audio files
+    # dataChunkProcess(textFile, '')  # step 5 - Separate text files into chunks for each thread
+    # # Enhance G2P process
+    # with concurrent.futures.ThreadPoolExecutor() as executor:
+    #     executor.map(G2P_process, dataChunks)  # step 6 - processing enhance audio to .par files
+    #
+    # dataChunkProcess(AudioEnhanceOutput, G2POutputFiles)  # step 7 - Two separate chunks for two uploads for WebMAUS
+    # # Enhance WebMAUS process for generating text grids
+    # with concurrent.futures.ThreadPoolExecutor() as executor:
+    #     executor.map(WebMAUS_process, dataChunks)  # step 8 - processing text grids from .par and enhanced audio files
 
     t2 = time.perf_counter()
 

@@ -3,16 +3,23 @@ import time
 # Other files
 from HelperFunctions import *
 from Constants import *
+from selenium import webdriver
 
 
 def G2P_process(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/Grapheme2Phoneme'
 
     # Output file directory
-    prefs = {"download.default_directory": G2POutputFiles}
-    options.add_experimental_option("prefs", prefs)
-
-    driver = webdriver.Chrome(service=s, options=options)
+    # prefs = {"download.default_directory": c,
+    #          "download.prompt_for_download": False,
+    #          "download.directory_upgrade": True,
+    #          "safebrowsing_for_trusted_sources_enabled": False,
+    #          "safebrowsing.enabled": False
+    #          }
+    # options.add_experimental_option("prefs", prefs)
+    #
+    options.set_preference("browser.download.dir", G2POutputFiles)
+    driver = webdriver.Firefox(executable_path=r'D:\pepaha\geckodriver.exe', log_path=r'D:\pepaha', options=options)
     driver.get(URL)
 
     print('Starting G2P automation')
@@ -67,8 +74,9 @@ def G2P_process(dataChunks):
     print('processing files...')
     while True:
         if not downloading(driver):
-            # click download zips
-            time.sleep(2)
+            time.sleep(2)  # Extra delay for downloading
+            # Wait for other threads to finish downloading to prevent duplicate zip files
+            waitForThreadsDownload(dataChunks, G2POutputFiles)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Download zips')
             break
@@ -81,4 +89,4 @@ def G2P_process(dataChunks):
 
     # Close G2P
     driver.close()
-    print('G2P closed')
+    print('G2P closed for thread ' + str(dataChunks))

@@ -4,19 +4,25 @@ import time
 from HelperFunctions import *
 from Constants import *
 
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+
 
 def enhance_audio(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/AudioEnhance'
 
-    # Output file directorys
-    prefs = {"download.default_directory": AudioEnhanceOutput,
-             "download.prompt_for_download": False,
-             "download.directory_upgrade": True,
-             "safebrowsing.enabled": True
-             }
-    options.add_experimental_option("prefs", prefs)
+    # # Output file directory
+    # prefs = {"download.default_directory": AudioEnhanceOutput,
+    #          "download.prompt_for_download": False,
+    #          "download.directory_upgrade": True,
+    #          "safebrowsing_for_trusted_sources_enabled": False,
+    #          "safebrowsing.enabled": False
+    #          }
+    # options.add_experimental_option("prefs", prefs)
 
-    driver = webdriver.Chrome(service=s, options=options)
+    options.set_preference("browser.download.dir", AudioEnhanceOutput)
+    driver = webdriver.Firefox(executable_path=r'D:\pepaha\geckodriver.exe', log_path=r'D:\pepaha', options=options)
     driver.get(URL)
 
     print('Starting enhancing audio automation')
@@ -58,6 +64,8 @@ def enhance_audio(dataChunks):
     while True:
         if not downloading(driver):
             time.sleep(2)  # Extra delay for downloading
+            # Wait for other threads to finish downloading to prevent duplicate zip files
+            waitForThreadsDownload(dataChunks, AudioEnhanceOutput)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Download zips')
             break
@@ -70,4 +78,4 @@ def enhance_audio(dataChunks):
 
     # Close AudioEnhance
     driver.close()
-    print('AudioEnhance closed')
+    print('AudioEnhance closed for thread ' + str(dataChunks))
