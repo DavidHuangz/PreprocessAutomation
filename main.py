@@ -20,7 +20,7 @@ def main():
     # Empty all relevant folders used for processing
     emptyFolder(AudioEnhanceOutput)
     time.sleep(0.5)  # Extra delay for deleting
-    emptyFolder(textFile)
+    emptyFolder(TextFile)
     time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(G2POutputFiles)
     time.sleep(0.5)  # Extra delay for deleting
@@ -35,7 +35,7 @@ def main():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(enhance_audio, dataChunks)  # step 4 - processing raw audio to enhance audio
 
-    dataChunkProcess(textFile, '')  # step 5 - Separate text files into chunks for each thread
+    dataChunkProcess(TextFile, '')  # step 5 - Separate text files into chunks for each thread
     # Enhance G2P process
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(G2P_process, dataChunks)  # step 6 - processing enhance audio to .par files
