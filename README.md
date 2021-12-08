@@ -44,6 +44,6 @@ add your "TRMg2p" file inside "ImapText" folder (e.g Input\ImapText\TRMg2p.txt) 
 4.1. Run main.py file <br />
 
 ## 5. More information
-5.1. Adjust the amount of threads in the "Constants.py" file according to your computer specs.  <br />
+5.1. Adjust the amount of threads running concurrently in the "Constants.py" file according to your computer specs.  <br />
 - The variable is called "num_threads"
 
