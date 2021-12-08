@@ -34,7 +34,7 @@ G2POutputFiles = r'D:\Output\genFiles\G2P_output' <br />
 
 WebMAUSOutputFile = r'D:\Output\WebMAUS_output' <br />
 
-## 3. Add Input files
+## 3. Add the files in the Input Folder
 3.1. Inside the "Input",  <br />
 add your all your raw audio files inside "Audio" folder (e.g "Input\Audio\audio1") <br /> <br />
 3.2. Inside the "Input",  <br />
