@@ -44,9 +44,9 @@ add your "TRMg2p" file inside "ImapText" folder (e.g Input\ImapText\TRMg2p.txt) 
 4.1. Run main.py file <br />
 
 ## 5. More information
-5.1. Adjust the amount of threads running concurrently in the "Constants.py" file according to your computer specs. 
-- The variable is called "num_threads"  <br /> 
+5.1. Adjust the number of threads running concurrently in the "Constants.py" file according to your computer specs. 
+- The variable is called "Num_threads"  <br /> 
 
-5.2. Add a new pepehaPhrase<br />
-- The variable is called "pepehaPhrase"  <br />
+5.2. Add a new Phrase<br />
+- The variable is called "PepehaPhrase"  <br />
 
