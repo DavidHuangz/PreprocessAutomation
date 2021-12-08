@@ -7,7 +7,7 @@ pip install chromedriver-py <br />
 pip install webdriver-manager <br />
 pip install pydub <br />
 
-## 1. File location
+## 1. Creating these Folders
 1. Make these two folders in a directory  <br />
 ![step1](https://user-images.githubusercontent.com/52488862/145132475-f44ba6cd-b10d-4a09-958e-414c09fe1cc2.PNG)
 
