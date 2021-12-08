@@ -126,11 +126,19 @@ def unzipFile(directory):
         print("Error with zip \n" + str(e))
 
 
-def isDownloadComplete(directory):
+def isDownloadComplete(directory, driver):
     num_files = 0
     checkFiles = 0
     print('File downloading...')
     while checkFiles < Num_threads:
+        try:
+            errorButton = driver.find_element(By.XPATH, '//*[@id="hintCloseButton"]')
+            if errorButton.is_displayed():
+                errorButton.click()
+                print('------------------------------------Clicked error button!------------------------------------')
+        except Exception:
+            pass
+
         for file in os.listdir(directory):
             if file.endswith(".zip"):
                 num_files += 1
@@ -139,12 +147,20 @@ def isDownloadComplete(directory):
     print('file fully downloaded')
 
 
-def waitForThreadsDownload(dataChunks, directory):
+def waitForThreadsDownload(dataChunks, directory, driver):
     print('Waiting for thread ' + str(dataChunks - 1) + ' to finish downloading...')
     num_files = 0
     checkFiles = 0
 
     while checkFiles < dataChunks:
+        try:
+            errorButton = driver.find_element(By.XPATH, '//*[@id="hintCloseButton"]')
+            if errorButton.is_displayed():
+                errorButton.click()
+                print('------------------------------------Clicked error button!------------------------------------')
+        except Exception:
+            pass
+
         for file in os.listdir(directory):
             if file.endswith(".zip"):
                 num_files += 1
@@ -212,15 +228,3 @@ def dataChunkProcess(directory1, directory2):
             globals()['fileY{0}'.format(i)] = globals()['fileY{0}'.format(i)][
                                               1:]  # get rid of new line at end of string
             print('thread{}: '.format(i) + '\n' + eval('fileY{0}'.format(i)) + '\n')
-
-
-# def modifyConstant(thread, directory):
-#     AudioNum = len(os.listdir(directory)) -1
-#     import Constants
-#     if thread > AudioNum:
-#         Constants.Num_threads = AudioNum  # Threads starts at 0
-#         print('Changed number of thread(s) to ' + str(AudioNum))
-#     else:
-#         print('Changed number of thread(s) remained as ' + str(Num_threads))
-#
-#     Constants.ThreadsNum = Constants.Num_threads

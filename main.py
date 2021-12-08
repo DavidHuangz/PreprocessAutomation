@@ -1,10 +1,11 @@
 import concurrent.futures
 import os.path
+import time
 
 # Other files
 from Processes.AudioEnchance import enhance_audio
 from Processes.WebMAUS import WebMAUS_process
-from Processes.G2P import *
+from Processes.G2P import G2P_process
 from HelperFunctions import *
 from Constants import Num_threads
 

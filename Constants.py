@@ -12,7 +12,7 @@ from Processes.ConvertToWav import convertWavThread
 
 # Configurable settings #
 NoBrowser = False
-Num_threads = 20
+Num_threads = 10
 ThreadsNum = Num_threads
 
 # Pepeha phrases
@@ -30,18 +30,16 @@ WebMAUSOutputFile = r'D:\pepaha\Output\WebMAUS_output'
 # Setting up browser
 options = Options()
 options.headless = NoBrowser
-# options.add_argument('--disable-gpu')
-# options.add_argument('--lang=en')
-# options.add_argument("--disable-notifications")
-# options.add_argument('--window-size=1280,720')
-# options.add_argument('--no-sandbox')
-# options.add_argument('--disable-dev-shm-usage')
-# options.add_argument('--disable-software-rasterizer')
-options.add_argument("--disable-notifications")
-options.add_argument('--no-sandbox')
-options.add_argument('--verbose')
 options.add_argument('--disable-gpu')
+options.add_argument('--lang=en')
+options.add_argument("--disable-notifications")
+options.add_argument('--window-size=1280,720')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--disable-software-rasterizer')
+options.add_argument('--verbose')
+options.add_argument('--safebrowsing.disable_download_protection')
+options.add_argument("safebrowsing-disable-extension-blacklist")
 s = Service(ChromeDriverManager().install())
 
 # step 1 - Convert all audio files to wav type concurrently in Constants.py
@@ -53,5 +51,4 @@ if Num_threads > AudioNum:
     print('Changed number of thread(s) to ' + str(AudioNum))
 else:
     print('Changed number of thread(s) remained as ' + str(Num_threads))
-
 ThreadsNum = Num_threads

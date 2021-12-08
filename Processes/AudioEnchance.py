@@ -9,7 +9,7 @@ def enhance_audio(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/AudioEnhance'
 
     # Output file directory's
-    prefs = {"download.default_directory": AudioEnhanceOutput,
+    prefs = {'behavior': 'allow', "download.default_directory": AudioEnhanceOutput,
              "download.prompt_for_download": False,
              "download.directory_upgrade": True,
              "safebrowsing_for_trusted_sources_enabled": False,
@@ -61,13 +61,13 @@ def enhance_audio(dataChunks):
         if not downloading(driver):
             time.sleep(2)  # Extra delay for downloading
             # Wait for other threads to finish downloading to prevent duplicate zip files
-            waitForThreadsDownload(dataChunks, AudioEnhanceOutput)
+            waitForThreadsDownload(dataChunks, AudioEnhanceOutput, driver)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Click download zips')
             break
 
     # Wait for download to complete
-    isDownloadComplete(AudioEnhanceOutput)
+    isDownloadComplete(AudioEnhanceOutput, driver)
 
     # Extract the zips files
     unzipFile(AudioEnhanceOutput)

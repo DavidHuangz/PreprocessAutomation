@@ -8,7 +8,11 @@ from Constants import *
 def WebMAUS_process(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/WebMAUSGeneral'
 
-    prefs = {"download.default_directory": WebMAUSOutputFile}
+    prefs = {"download.default_directory": WebMAUSOutputFile,
+             "download.prompt_for_download": False,
+             "download.directory_upgrade": True,
+             "safebrowsing_for_trusted_sources_enabled": False,
+             "safebrowsing.enabled": False}
     options.add_experimental_option("prefs", prefs)
 
     driver = webdriver.Chrome(service=s, options=options)
@@ -57,13 +61,13 @@ def WebMAUS_process(dataChunks):
         if not downloading(driver):
             time.sleep(2)  # Extra delay for downloading
             # Wait for other threads to finish downloading to prevent duplicate zip files
-            waitForThreadsDownload(dataChunks, WebMAUSOutputFile)
+            waitForThreadsDownload(dataChunks, WebMAUSOutputFile, driver)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Click download zips')
             break
 
     # Wait for download
-    isDownloadComplete(WebMAUSOutputFile)
+    isDownloadComplete(WebMAUSOutputFile, driver)
 
     # Extract the zips files
     unzipFile(WebMAUSOutputFile)

@@ -9,7 +9,11 @@ def G2P_process(dataChunks):
     URL = 'https://clarin.phonetik.uni-muenchen.de/BASWebServices/interface/Grapheme2Phoneme'
 
     # Output file directory
-    prefs = {"download.default_directory": G2POutputFiles}
+    prefs = {"download.default_directory": G2POutputFiles,
+             "download.prompt_for_download": False,
+             "download.directory_upgrade": True,
+             "safebrowsing_for_trusted_sources_enabled": False,
+             "safebrowsing.enabled": False}
     options.add_experimental_option("prefs", prefs)
 
     driver = webdriver.Chrome(service=s, options=options)
@@ -67,14 +71,14 @@ def G2P_process(dataChunks):
     while True:
         if not downloading(driver):
             time.sleep(2)  # Extra delay for downloading
-            # Wait for other threads to finish downloading to prevent duplicate zip files
-            waitForThreadsDownload(dataChunks, G2POutputFiles)
+            # # Wait for other threads to finish downloading to prevent duplicate zip files
+            # waitForThreadsDownload(dataChunks, G2POutputFiles, driver)
             clickElement('/html/body/div[3]/div/div/upload-element-multiple/div/div[3]/div/div[2]/div[2]', driver)
             print('Click download zips')
             break
 
     # Wait for download
-    isDownloadComplete(G2POutputFiles)
+    isDownloadComplete(G2POutputFiles, driver)
 
     # Extract the zips files
     unzipFile(G2POutputFiles)
