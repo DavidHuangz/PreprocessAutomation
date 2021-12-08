@@ -5,7 +5,6 @@ import os.path
 from Processes.AudioEnchance import enhance_audio
 from Processes.WebMAUS import WebMAUS_process
 from Processes.G2P import *
-from Processes.ConvertToWav import threadingConvertToWav
 from HelperFunctions import *
 from Constants import Num_threads
 
@@ -13,9 +12,7 @@ from Constants import Num_threads
 def main():
     t1 = time.perf_counter()
 
-    threadingConvertToWav()  # step 1 - Convert all audio files to wav type
-    # If Num_threads > audio files, adjust threads equal to audio files
-    modifyConstant(Num_threads, AudioFiles)
+    # step 1 - Convert all audio files to wav type concurrently in Constants.py
 
     # Concurrent datachunks processing for each thread
     dataChunks = []

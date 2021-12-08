@@ -1,23 +1,22 @@
+import concurrent
 import os
-import concurrent.futures
 from random import shuffle
 from glob import glob
 from pydub import AudioSegment
 import time
-from Constants import ThreadsNum, AudioFiles
 
 
-def convertToWav():
-    rawAudioFiles = len(os.listdir(AudioFiles))
+def convertToWav(threads, directory):
+    rawAudioFiles = len(os.listdir(directory))
     print('Starting with: ' + str(rawAudioFiles) + ' files')
 
     # Change working directory
-    os.chdir(AudioFiles)
+    os.chdir(directory)
     try:
         extension_list = ('.m4a', '.mp4')
         # Previously needed to change directories, merged this together with the personal pepeha script, no longer
         # needs it
-        audio_files = glob(AudioFiles + '/*')
+        audio_files = glob(directory + '/*')
         shuffle(audio_files)  # shuffle files for greater efficiency for multithreading
         # Goes through the dataset to check for recordings that are either mp4 or m4a
         for file in audio_files:
@@ -30,25 +29,13 @@ def convertToWav():
 
     except Exception as e:
         print("Error with conversion \n" + str(e))
-        time.sleep(ThreadsNum / 100 + 1)  # scalable delay for threads accessing same file
-        convertToWav()  # recursive
+        time.sleep(threads / 100 + 1)  # scalable delay for threads accessing same file
+        convertToWav(threads, directory)  # recursive
 
 
-def threadingConvertToWav():
-    startAudioConversion = time.perf_counter()
-
-    # Multithreading
+def convertWavThread(threads, directory):
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        results = [executor.submit(convertToWav) for _ in range(ThreadsNum)]
+        results = [executor.submit(convertToWav, threads, directory) for _ in range(threads)]
         for f in concurrent.futures.as_completed(results):
             print(f.result())
-
-    finishAudioConversion = time.perf_counter()
-
-    # get number of files
-    listX = os.listdir(AudioFiles)
-    listOfFiles = len(listX)
-    print('Conversion completed!\n' + 'Total files converted: ' + str(listOfFiles))
-    print(
-        f'Finished in {round(finishAudioConversion - startAudioConversion, 2)} second(s)' + ' with ' + str(
-            ThreadsNum) + ' threads')
+    print('Conversion completed!\n' + 'Total files converted: ' + str(len(os.listdir(directory))))

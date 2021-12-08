@@ -1,4 +1,3 @@
-import os
 import os.path
 from glob import glob
 import shutil
@@ -215,11 +214,13 @@ def dataChunkProcess(directory1, directory2):
             print('thread{}: '.format(i) + '\n' + eval('fileY{0}'.format(i)) + '\n')
 
 
-def modifyConstant(thread, directory):
-    AudioNum = len(os.listdir(directory))
-    if thread > AudioNum:
-        global Num_threads
-        global ThreadsNum
-        Num_threads = AudioNum
-        ThreadsNum = AudioNum
-        print('Changed number of thread(s) to ' + str(Num_threads))
+# def modifyConstant(thread, directory):
+#     AudioNum = len(os.listdir(directory)) -1
+#     import Constants
+#     if thread > AudioNum:
+#         Constants.Num_threads = AudioNum  # Threads starts at 0
+#         print('Changed number of thread(s) to ' + str(AudioNum))
+#     else:
+#         print('Changed number of thread(s) remained as ' + str(Num_threads))
+#
+#     Constants.ThreadsNum = Constants.Num_threads
