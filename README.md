@@ -7,7 +7,7 @@ pip install chromedriver-py <br />
 pip install webdriver-manager <br />
 pip install pydub <br />
 
-## 1. Creating these Folders
+## 1. Create these Folders
 1. Make these two folders in a directory  <br />
 ![step1](https://user-images.githubusercontent.com/52488862/145132475-f44ba6cd-b10d-4a09-958e-414c09fe1cc2.PNG)
 
@@ -21,7 +21,7 @@ pip install pydub <br />
 ![step4](https://user-images.githubusercontent.com/52488862/145132710-feee7831-3b15-4470-a7e4-af9c981c9573.PNG)
 
 ## 2. Add the full directory path to the following variables in the "Constants.py" file
-### File locations examples
+### Examples
 AudioFiles = r'D:\Input\Audio' <br />
 
 AudioEnhanceOutput = r'D:\Output\genFiles\AudioEnhanceOutput' <br />
