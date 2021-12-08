@@ -35,7 +35,7 @@ def emptyFolder(folder):
 
 def makeTextFile():
     file_in = AudioFiles
-    file_out = textFile
+    file_out = TextFile
     pepehaPhrase = 'Ko Maungawhau Ko Maungakiekie ngā maunga\nKo Waitematā Ko Manuka ngā whanga\nKo Tūtahi Tonu te ' \
                    'Whare\nKo Te Aka Matua o Te Pou Hawaiki te Marae\nKo Niwaru te waka\nKo Tuputupu Whenua te tangata '
 
