@@ -6,19 +6,15 @@ import time
 from Processes.AudioEnchance import enhance_audio
 from Processes.WebMAUS import WebMAUS_process
 from Processes.G2P import G2P_process
+from Processes.personalPepeha import personalPepeha
+from Processes.makeTextFile import makeTextFile
+
 from HelperFunctions import *
 from Constants import Num_threads
 
 
 def main():
     t1 = time.perf_counter()
-
-    # step 1 - Convert all audio files to wav type concurrently in Constants.py
-
-    # Concurrent datachunks processing for each thread
-    dataChunks = []
-    for x in range(Num_threads):
-        dataChunks.append(x)
 
     # Empty all relevant folders used for processing
     emptyFolder(AudioEnhanceOutput)
@@ -29,7 +25,18 @@ def main():
     time.sleep(0.5)  # Extra delay for deleting
     emptyFolder(WebMAUSOutputFile)
 
-    makeTextFile()  # step 2 - Make all text files for G2P - .Par files
+    # step 1 - Convert all audio files to wav type concurrently in
+    # Constants.py
+
+    # step 2 - Remove all personal Pepeha audio files
+    personalPepeha()
+
+    makeTextFile()  # step 3 - Make all text files for G2P - .Par files
+
+    # Concurrent datachunks processing for each thread
+    dataChunks = []
+    for x in range(Num_threads):
+        dataChunks.append(x)
 
     dataChunkProcess(AudioFiles, '')  # step 3 - Separate audio into chunks for each thread
     # Enhance audio process

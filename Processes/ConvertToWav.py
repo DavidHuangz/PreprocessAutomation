@@ -34,6 +34,7 @@ def convertToWav(threads, directory):
 
 
 def convertWavThread(threads, directory):
+    print('Starting convert to Wav for thread')
     with concurrent.futures.ThreadPoolExecutor() as executor:
         results = [executor.submit(convertToWav, threads, directory) for _ in range(threads)]
         for f in concurrent.futures.as_completed(results):

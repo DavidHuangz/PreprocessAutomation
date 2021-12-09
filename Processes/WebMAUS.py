@@ -18,7 +18,7 @@ def WebMAUS_process(dataChunks):
     driver = webdriver.Chrome(service=s, options=options)
     driver.get(URL)
 
-    print('Starting WebMAUS General automation')
+    print('Starting WebMAUS General automation for thread ' + str(dataChunks))
     checkPageLoad(driver)
 
     # Accept privacy policy

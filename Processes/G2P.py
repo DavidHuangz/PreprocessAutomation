@@ -19,7 +19,7 @@ def G2P_process(dataChunks):
     driver = webdriver.Chrome(service=s, options=options)
     driver.get(URL)
 
-    print('Starting G2P automation')
+    print('Starting G2P automation for thread ' + str(dataChunks))
     checkPageLoad(driver)
 
     # Accept privacy policy

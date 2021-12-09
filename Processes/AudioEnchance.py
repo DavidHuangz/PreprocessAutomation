@@ -21,7 +21,7 @@ def enhance_audio(dataChunks):
     driver = webdriver.Chrome(service=s, options=options)
     driver.get(URL)
 
-    print('Starting enhancing audio automation')
+    print('Starting enhancing audio automation for thread ' + str(dataChunks))
     checkPageLoad(driver)
 
     # Accept privacy policy

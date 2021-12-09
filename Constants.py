@@ -23,6 +23,7 @@ PepehaPhrase = 'Ko Maungawhau Ko Maungakiekie ngā maunga\nKo Waitematā Ko Manu
 AudioFiles = r'D:\pepaha\Input\Audio'
 AudioEnhanceOutput = r'D:\pepaha\Output\genFiles\AudioEnhanceOutput'
 TextFile = r'D:\pepaha\Output\genFiles\Text'
+PersonalPepehaText = r'D:\pepaha\Input\PersonalPepeha\personalPepeha.txt'
 ImapText = r'D:\pepaha\Input\ImapText\TRMg2p.txt'
 G2POutputFiles = r'D:\pepaha\Output\genFiles\G2P_output'
 WebMAUSOutputFile = r'D:\pepaha\Output\WebMAUS_output'
