@@ -1,9 +1,10 @@
-import concurrent
 import os
+import concurrent.futures
+import time
+
 from random import shuffle
 from glob import glob
 from pydub import AudioSegment
-import time
 
 
 def convertToWav(threads, directory):

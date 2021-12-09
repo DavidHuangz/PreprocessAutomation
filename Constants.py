@@ -11,8 +11,8 @@ from selenium.webdriver.chrome.options import Options
 from Processes.ConvertToWav import convertWavThread
 
 # Configurable settings #
-NoBrowser = False
-Num_threads = 10
+NoBrowser = True
+Num_threads = 5
 ThreadsNum = Num_threads
 
 # Pepeha phrases
@@ -20,10 +20,12 @@ PepehaPhrase = 'Ko Maungawhau Ko Maungakiekie ngā maunga\nKo Waitematā Ko Manu
                'Whare\nKo Te Aka Matua o Te Pou Hawaiki te Marae\nKo Niwaru te waka\nKo Tuputupu Whenua te tangata'
 
 # File locations
+# Edit the file manually
+PersonalPepehaText = r'D:\pepaha\Input\PersonalPepeha\personalPepeha.txt'
+
 AudioFiles = r'D:\pepaha\Input\Audio'
 AudioEnhanceOutput = r'D:\pepaha\Output\genFiles\AudioEnhanceOutput'
 TextFile = r'D:\pepaha\Output\genFiles\Text'
-PersonalPepehaText = r'D:\pepaha\Input\PersonalPepeha\personalPepeha.txt'
 ImapText = r'D:\pepaha\Input\ImapText\TRMg2p.txt'
 G2POutputFiles = r'D:\pepaha\Output\genFiles\G2P_output'
 WebMAUSOutputFile = r'D:\pepaha\Output\WebMAUS_output'

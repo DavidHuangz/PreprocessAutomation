@@ -24,4 +24,4 @@ def personalPepeha():
                 print(wav_filename + " Removed")
                 os.remove(file)
 
-    print("Completed!")
+    print('PersonalPepeha completed!\n' + 'Total files left: ' + str(len(os.listdir(AudioFiles))))

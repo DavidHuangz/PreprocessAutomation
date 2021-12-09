@@ -6,9 +6,7 @@ import shutil
 def makeTextFile():
     file_in = AudioFiles
     file_out = TextFile
-
     os.chdir(file_in)
-
     # Iterate all audio files
     audio_files = glob(file_in + '/*.wav')
 
